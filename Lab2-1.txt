@@ -1,0 +1,98 @@
+/*2.1 (14). Шар. Разработать программу, меню которой позволяет выполнить следующие функции:
+1. Ввод радиуса шара.
+2. Вывод площади поверхности шара.
+3. Вывод объема шара.
+4. Вывод длины ребра вписанного правильного тетраэдра.
+5. Вывод площади сечения, проведенного на расстоянии k от центра шара.
+6. Информация о версии и авторе программы.
+7. Выход из программы.
+*/
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale>
+
+void rad(float* R) { 
+
+	printf("Введите радиус шара R: \n");
+	scanf_s("%f", R);
+
+}
+
+void Square(float* R) { 
+	float& k = *R;
+	float S = 4 * (float)3.14 * k * k;
+	printf("Площадь поверхности шара равна = %f", S);
+	printf("\n");
+}
+
+void Volume(float* R) { 
+	float& k = *R;
+	float V = (float)1.33 * (float)3.14 * k * k * k;
+	printf("Объём шара равен = %f", V);
+	printf("\n");
+}
+
+void Lengh(float* R) { 
+	float& r = *R;
+	float a = 4 * r / powf(6, 0.5);
+	printf("Длина ребра вписанного правильного тетраэдра равна = %f", a);
+	printf("\n");
+}
+
+void Task(float* R) { 
+	float& r = *R;
+	float k;
+	printf("Ведите расстояние от центра шара до сечения - k:");
+	scanf_s("%f", &k);
+	float S = (float)3.14 * powf((r * r - k * k), 0.5) * powf((r * r - k * k), 0.5);
+	printf("Площадь сечения, проведенного на расстоянии k от центра шара = %f", S);
+	printf("\n");
+}
+
+void sved() {
+	printf("Светлана Кусакова ver 1.0 \n");
+}
+
+void exit() {
+	printf("До свидания! \n");
+}
+
+
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	
+	int choice;
+	float variable;
+	do {
+		
+		printf("Выбор действий: \n");
+		printf("\t1. Ввод радиуса шара. : \n");
+		printf("\t2. Вывод площади поверхности шара. \n");
+		printf("\t3. Вывод объема шара. \n");
+		printf("\t4. Вывод длины ребра вписанного правильного тетраэдра. \n");
+		printf("\t5. Вывод площади сечения, проведенного на расстоянии k от центра шара. \n");
+		printf("\t6. Информация о версии и авторе программы. \n");
+		printf("\t7. Выход из программы. \n");
+		printf("Выберите: \n");
+		
+		if (scanf_s("%d", &choice)) {
+			switch (choice)
+			{
+			case 1:rad(&variable); printf("\n"); break;
+			case 2:Square(&variable); printf("\n"); break;
+			case 3:Volume(&variable); printf("\n"); break;
+			case 4:Lengh(&variable); printf("\n"); break;
+			case 5:Task(&variable); printf("\n"); break;
+			case 6:sved(); printf("\n"); break; 
+			case 7:exit(); break;
+			default: printf("error\n"); break;	
+			}
+		}
+		else {
+			printf("error\n"); break;
+		}	
+	} while ((choice >0) && (choice < 7));
+	return 0;
+}
